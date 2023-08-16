@@ -28,13 +28,15 @@ def get_new_survey_data():
 
     print('Please enter the results of the new survey\n')
     new_name = input('Enter the employee name:')
-    new_survey.append(new_name)
+    new_survey.append(new_name.capitalize())
     new_nps = input('Enter a number between 0 and 10:')
     new_survey.append(int(new_nps))
-    new_resolve = input("Enter 'yes', 'no' or 'I don't know':\n")
-    new_survey.append(new_resolve)
+    new_resolve = input("Enter 'yes', 'no' or 'i don't know':\n")
+    new_survey.append(new_resolve.lower())
     
     validate_data(new_survey)
+
+    return new_survey
 
 
 def validate_data(values):
@@ -52,7 +54,7 @@ def validate_data(values):
                 return values
             elif values[2] == "no":
                 return values
-            elif values[2] == "I don't know":
+            elif values[2] == "i don't know":
                 return values
             else:
                 print("The input can only be 'yes', 'no' or 'I don't know'\n")
@@ -67,4 +69,15 @@ def validate_data(values):
         get_new_survey_data()
         
 
-get_new_survey_data()
+def update_survey_worksheet(new_data):
+    """
+    Update survey worksheet, add new row with the list data provided by user"
+    """
+    print(f"Adding {new_data} to survey worksheet...")
+    survey_worksheet = SHEET.worksheet("survey")
+    survey_worksheet.append_row(new_data)
+    print("New survey added successfully. \n")
+
+
+new_data = get_new_survey_data()
+update_survey_worksheet(new_data)
