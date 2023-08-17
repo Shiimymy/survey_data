@@ -12,10 +12,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('survey_data')
 
-survey = SHEET.worksheet('survey')
-data = survey.get_all_values()
-print(data)
-
 
 def get_new_survey_data():
     """
@@ -69,15 +65,45 @@ def validate_data(values):
         get_new_survey_data()
         
 
-def update_survey_worksheet(new_data):
+def update_survey_worksheet(data):
     """
     Update survey worksheet, add new row with the list data provided by user"
     """
-    print(f"Adding {new_data} to survey worksheet...")
+    print(f"Adding {data} to survey worksheet...")
     survey_worksheet = SHEET.worksheet("survey")
-    survey_worksheet.append_row(new_data)
+    survey_worksheet.append_row(data)
     print("New survey added successfully. \n")
 
 
-new_data = get_new_survey_data()
-update_survey_worksheet(new_data)
+def get_employees():
+    """
+    Collect employees data to calculate their stats
+    """
+    survey_worksheet = SHEET.worksheet('survey')
+    surveys = survey_worksheet.get_all_values()
+    return surveys
+
+
+def get_average_nps(employee_list):
+    """
+    Calculate the average NPS of the Team
+    """
+    total = 0
+    for survey in employee_list[1:]:
+        total += int(survey[1])
+        total /= len(survey)
+    print(round(total))
+    return total
+
+
+def main():
+    """
+    Run all program functions.
+    """
+    new_data = get_new_survey_data()
+    update_survey_worksheet(new_data)
+    employee_list = get_employees()
+    get_average_nps(employee_list)
+
+
+main()
