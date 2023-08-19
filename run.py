@@ -39,7 +39,7 @@ def validate_data(values):
     """
     Check if the 3 datas provided by the user are valid.
     """
-    
+    # bug to fix : doesn't get new value to worksheet
     if (values[0]).isalpha():
         print("Valid name")
 
@@ -69,7 +69,6 @@ def update_survey_worksheet(data):
     """
     Update survey worksheet, add new row with the list data provided by user"
     """
-    print(f"Adding {data} to survey worksheet...")
     survey_worksheet = SHEET.worksheet("survey")
     survey_worksheet.append_row(data)
     print("New survey added successfully. \n")
@@ -96,14 +95,27 @@ def get_average_nps(employee_list):
     return round(total)
 
 
+def update_score_worksheet(data):
+    """
+    Update the score worksheet with actions to plan for the user
+    wich are linked with the average NPS score of the Team
+    and the issue resolution percentage.
+    """
+    print(data)
+    new_score = ["action", data, "%"]
+    score_worksheet = SHEET.worksheet("score")
+    score_worksheet.append_row(new_score)
+
+
 def main():
     """
     Run all program functions.
     """
     new_data = get_new_survey_data()
-    update_survey_worksheet(str(new_data))
+    update_survey_worksheet(new_data)
     employee_list = get_employees()
     average_nps = get_average_nps(employee_list)
+    update_score_worksheet(str(average_nps))
 
 
 main()
