@@ -25,6 +25,7 @@ def get_new_survey_data():
     print('Please enter the results of the new survey\n')
     new_name = input('Enter the employee name:')
     new_survey.append(new_name.capitalize())
+    # bug to fix : add ValueError exception
     new_nps = input('Enter a number between 0 and 10:')
     new_survey.append(int(new_nps))
     new_resolve = input("Enter 'yes', 'no' or 'i don't know':\n")
@@ -95,16 +96,29 @@ def get_average_nps(employee_list):
     return round(total)
 
 
-def update_score_worksheet(data):
+def calculate_resolution_percentage(employee_list):
+    """
+    Calculate the percentage of survey with resolved issue
+    """
+    count_yes = 0
+
+    for x in employee_list[1:]:
+        count_yes += x[2].count('yes')
+    
+    percentage_yes = ((count_yes*100)/len(employee_list[1:]))
+    return round(percentage_yes)
+
+
+def update_score_worksheet(nps, resolution):
     """
     Update the score worksheet with actions to plan for the user
     wich are linked with the average NPS score of the Team
     and the issue resolution percentage.
     """
-    print(data)
-    new_score = ["action", data, "%"]
+    new_score = ["action", nps, f"{resolution}%"]
     score_worksheet = SHEET.worksheet("score")
     score_worksheet.append_row(new_score)
+    print("The score worksheet is updated: please check your Team score.")
 
 
 def main():
@@ -115,7 +129,8 @@ def main():
     update_survey_worksheet(new_data)
     employee_list = get_employees()
     average_nps = get_average_nps(employee_list)
-    update_score_worksheet(str(average_nps))
+    resolution_percentage = calculate_resolution_percentage(employee_list)
+    update_score_worksheet(str(average_nps), str(resolution_percentage))
 
 
 main()
