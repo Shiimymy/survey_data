@@ -91,9 +91,9 @@ def get_average_nps(employee_list):
     total = 0
     for survey in employee_list[1:]:
         total += int(survey[1])
-        total /= len(survey)
-    print(round(total))
-    return total
+    
+    total /= len(employee_list[1:])
+    return round(total)
 
 
 def main():
@@ -101,9 +101,9 @@ def main():
     Run all program functions.
     """
     new_data = get_new_survey_data()
-    update_survey_worksheet(new_data)
+    update_survey_worksheet(str(new_data))
     employee_list = get_employees()
-    get_average_nps(employee_list)
+    average_nps = get_average_nps(employee_list)
 
 
 main()
