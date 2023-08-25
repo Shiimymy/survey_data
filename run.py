@@ -144,6 +144,10 @@ def identify_leader_training(nps, resolution):
 
 
 def get_leader_action(meeting, training):
+    """
+    Get the leader action and return what the
+    leader should organize with it's Team
+    """
     if not (meeting or training):
         no_action = "None"
         return no_action
