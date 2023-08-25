@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from datetime import datetime
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -150,13 +151,20 @@ def get_leader_action(meeting, training):
         return f"{meeting}{training}"
 
 
-def update_score_worksheet(nps, resolution, action):
+def get_date():
+    """
+    Get the date from the datetime library and return it
+    """
+    date = datetime.now().date()
+    return date
+
+def update_score_worksheet(date, nps, resolution, action):
     """
     Update the score worksheet with actions to plan for the user
     wich are linked with the average NPS score of the Team
     and the issue resolution percentage.
     """
-    new_score = ["date", nps, f"{resolution}%", action]
+    new_score = [str(date), nps, f"{resolution}%", action]
     score_worksheet = SHEET.worksheet("score")
     score_worksheet.append_row(new_score)
     print("The score worksheet is updated: please check your Team score.")
@@ -174,7 +182,8 @@ def main():
     meeting = identify_leader_meeting(average_nps, resolution_percentage)
     training = identify_leader_training(average_nps, resolution_percentage)
     action = get_leader_action(meeting, training)
-    update_score_worksheet(str(average_nps), str(resolution_percentage), str(action))
+    date = get_date()
+    update_score_worksheet(date, str(average_nps), str(resolution_percentage), str(action))
 
 
 main()
