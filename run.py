@@ -53,9 +53,19 @@ def get_new_name():
 
 
 def get_new_nps():
-    nps = input('Enter a number between 0 and 10:\n')
-    validate_nps(int(nps))
-    return nps
+    """
+    Get new NPS from user to complete new survey data
+    """
+    new_nps = None
+
+    while True:
+        new_nps = input('Enter a number between 0 and 10 for the NPS:\n')
+        if validate_nps(int(new_nps)):
+            break
+        else:
+            print("The NPS should be a number between 0 and 10\n")
+
+    return new_nps
 
 
 def get_new_resolution():
@@ -80,11 +90,9 @@ def validate_nps(new_nps):
     Validate new nps given by user
     """
     if 0 <= new_nps <= 10:
-        print("Valid NPS")
-        return new_nps
+        return True
     else:
-        print("The NPS should be a number between 0 and 10\n")
-        get_new_survey_data()
+        return False
 
 
 def validate_resolution(new_resolve):
