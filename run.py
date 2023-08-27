@@ -24,13 +24,10 @@ def get_new_survey_data():
     new_survey = []
 
     new_name = get_new_name()
-    validate_name(new_name)
 
     new_nps = get_new_nps()
-    validate_nps(int(new_nps))
 
     new_resolve = get_new_resolution()
-    validate_resolution(new_resolve)
 
     new_survey.append(new_name.capitalize())
     new_survey.append(int(new_nps))
@@ -40,19 +37,31 @@ def get_new_survey_data():
 
 
 def get_new_name():
-    print('Please enter the results of the new survey\n')
-    new_name = input('Enter the employee name:\n')
+
+    new_name = None
+
+    while True:
+        print('Please enter the results of the new survey\n')
+        new_name = input('Enter the employee name:\n')
+        if validate_name(new_name):
+            break
+        else:
+            print(f"{new_name} is not valid")
+            continue
+
     return new_name
 
 
 def get_new_nps():
-    new_nps = input('Enter a number between 0 and 10:\n')
-    return new_nps
+    nps = input('Enter a number between 0 and 10:\n')
+    validate_nps(int(nps))
+    return nps
 
 
 def get_new_resolution():
     print("How the customers reponded to : Did you issue was resolved?")
     new_resolve = input("Enter 'yes', 'no' or 'i don't know':\n")
+    validate_resolution(new_resolve)
     return new_resolve
 
 
@@ -60,12 +69,10 @@ def validate_name(new_name):
     """
     Validate name given by user
     """
-    if (new_name).isalpha():
-        print(f"Valid Name: {new_name}")
-        return new_name
+    if new_name.isalpha():
+        return True
     else:
-        print(f"wrong : {new_name}")
-        get_new_name()
+        return False
 
 
 def validate_nps(new_nps):
