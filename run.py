@@ -32,7 +32,7 @@ def get_new_resolution():
     return new_resolve
 
 
-def get_new_survey_data(new_name, new_nps, new_resolve):
+def get_new_survey_data():
     """
     Get a new survey data with 3 information from the user.
     The first should be a employee name
@@ -40,12 +40,13 @@ def get_new_survey_data(new_name, new_nps, new_resolve):
     The last a 3 options string.
     """
     new_survey = []
+    new_name = get_new_name()
+    new_nps = get_new_nps()
+    new_resolve = get_new_resolution()
 
     new_survey.append(new_name.capitalize())
     new_survey.append(int(new_nps))
     new_survey.append(new_resolve.lower())
-            
-    validate_data(new_survey)
 
     return new_survey
 
@@ -59,27 +60,34 @@ def validate_name(new_name):
         return new_name
     else:
         print(f"wrong : {new_name}")
+        get_new_name()
+
+
+def validate_nps(new_nps):
+    """
+    Validate new nps given by user
+    """
+    if 0 <= values[1] <= 10:
+        print("Valid NPS")
+        return new_nps
+    else:
+        print("The NPS should be a number between 0 and 10\n")
+        get_new_survey_data()
 
 
 def validate_data(values):
     """
     Check if the 3 datas provided by the user are valid.
     """
-    # bug to fix : doesn't get new value to worksheet
-    if 0 <= values[1] <= 10:
-        print("Valid NPS")
-        if values[2] == "yes":
-            # new function after user input
-            return values
-        elif values[2] == "no":
-            return values
-        elif values[2] == "i don't know":
-            return values
-        else:
-            print("The input can only be 'yes', 'no' or 'I don't know'\n")
-            
+     if values[2] == "yes":
+        # new function after user input
+        return values
+    elif values[2] == "no":
+        return values
+    elif values[2] == "i don't know":
+        return values
     else:
-        print("The NPS should be a number between 0 and 10\n")
+        print("The input can only be 'yes', 'no' or 'I don't know'\n")
         
 
 def update_survey_worksheet(data):
@@ -191,10 +199,7 @@ def main():
     """
     Run all program functions.
     """
-    new_name = get_new_name()
-    new_nps = get_new_nps()
-    new_resolve = get_new_resolution()
-    new_data = get_new_survey_data(new_name, new_nps, new_resolve)
+    new_data = get_new_survey_data()
     update_survey_worksheet(new_data)
     employee_list = get_employees()
     average_nps = get_average_nps(employee_list)
