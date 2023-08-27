@@ -14,10 +14,34 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('survey_data')
 
 
+def get_new_survey_data():
+    """
+    Get a new survey data with 3 information from the user.
+    The first should be a employee name
+    The second a number between 0 and 10
+    The last a 3 options string.
+    """
+    new_survey = []
+
+    new_name = get_new_name()
+    validate_name(new_name)
+
+    new_nps = get_new_nps()
+    validate_nps(int(new_nps))
+
+    new_resolve = get_new_resolution()
+    validate_resolution(new_resolve)
+
+    new_survey.append(new_name.capitalize())
+    new_survey.append(int(new_nps))
+    new_survey.append(new_resolve)
+
+    return new_survey
+
+
 def get_new_name():
     print('Please enter the results of the new survey\n')
     new_name = input('Enter the employee name:\n')
-    validate_name(new_name)
     return new_name
 
 
@@ -30,25 +54,6 @@ def get_new_resolution():
     print("How the customers reponded to : Did you issue was resolved?")
     new_resolve = input("Enter 'yes', 'no' or 'i don't know':\n")
     return new_resolve
-
-
-def get_new_survey_data():
-    """
-    Get a new survey data with 3 information from the user.
-    The first should be a employee name
-    The second a number between 0 and 10
-    The last a 3 options string.
-    """
-    new_survey = []
-    new_name = get_new_name()
-    new_nps = get_new_nps()
-    new_resolve = get_new_resolution()
-
-    new_survey.append(new_name.capitalize())
-    new_survey.append(int(new_nps))
-    new_survey.append(new_resolve.lower())
-
-    return new_survey
 
 
 def validate_name(new_name):
@@ -67,7 +72,7 @@ def validate_nps(new_nps):
     """
     Validate new nps given by user
     """
-    if 0 <= values[1] <= 10:
+    if 0 <= new_nps <= 10:
         print("Valid NPS")
         return new_nps
     else:
@@ -75,20 +80,22 @@ def validate_nps(new_nps):
         get_new_survey_data()
 
 
-def validate_data(values):
+def validate_resolution(new_resolve):
     """
-    Check if the 3 datas provided by the user are valid.
+    Validate new resolution answer given by user
     """
-     if values[2] == "yes":
-        # new function after user input
-        return values
-    elif values[2] == "no":
-        return values
-    elif values[2] == "i don't know":
-        return values
+    if new_resolve == "yes":
+        return new_resolve
+    elif new_resolve == "no":
+        return new_resolve
+    elif new_resolve == "i don't know":
+        return new_resolve
     else:
         print("The input can only be 'yes', 'no' or 'I don't know'\n")
-        
+        get_new_survey_data()
+
+# new function after user input
+
 
 def update_survey_worksheet(data):
     """
