@@ -14,6 +14,24 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('survey_data')
 
 
+def choose_action():
+    """
+    Prompt user to either enter a new survey
+    or get the score for a date
+    """
+    print("Welcome to the survey's datas of your Team")
+
+    user_choice = None
+
+    while True:
+        print("You can add a new survey or get the score for a date")
+        user_choice = input("Enter 'survey' or 'score': ")
+        if validate_action(user_choice):
+            break
+        else:
+            print("Invalid : enter only 'survey' or 'score'")
+
+
 def get_new_survey_data():
     """
     Get a new survey data with 3 information from the user.
@@ -44,7 +62,7 @@ def get_new_name():
 
     while True:
         print('Please enter the results of the new survey\n')
-        new_name = input('Enter the employee name:\n')
+        new_name = input('Enter the employee name: \n')
         if validate_name(new_name):
             break
         else:
@@ -61,7 +79,7 @@ def get_new_nps():
     new_nps = None
 
     while True:
-        new_nps = input('Enter a number between 0 and 10 for the NPS:\n')
+        new_nps = input('Enter a number between 0 and 10 for the NPS: \n')
         if validate_nps(int(new_nps)):
             break
         else:
@@ -78,7 +96,7 @@ def get_new_resolution():
 
     while True:
         print("How the customers reponded to : Did you issue was resolved?")
-        new_resolve = input("Enter 'yes', 'no' or 'i don't know':\n")
+        new_resolve = input("Enter 'yes', 'no' or 'i don't know': \n")
         if validate_resolution(new_resolve):
             break
         else:
@@ -119,8 +137,6 @@ def validate_resolution(new_resolve):
         return True
     else:
         return False
-
-# new function after user input
 
 
 def update_survey_worksheet(data):
@@ -232,6 +248,7 @@ def main():
     """
     Run all program functions.
     """
+    choose_action()
     new_data = get_new_survey_data()
     update_survey_worksheet(new_data)
     employee_list = get_employees()
