@@ -24,12 +24,25 @@ def choose_action():
     user_choice = None
 
     while True:
-        print("You can add a new survey or get the score for a date")
-        user_choice = input("Enter 'survey' or 'score': ")
+        print("You can add a new survey, get the score for a date")
+        user_choice = input("Enter 'survey', 'score': ")
         if validate_action(user_choice):
             break
         else:
             print("Invalid : enter only 'survey' or 'score'")
+            continue
+
+
+def validate_action(user_choice):
+    """
+    Validate user action choice
+    """
+    if user_choice == "survey":
+        return get_new_survey_data()
+    elif user_choice == "score":
+        print("score function to build")
+    else:
+        return False
 
 
 def get_new_survey_data():
@@ -146,6 +159,7 @@ def update_survey_worksheet(data):
     survey_worksheet = SHEET.worksheet("survey")
     survey_worksheet.append_row(data)
     print("New survey added successfully. \n")
+    choose_action()
 
 
 def get_employees():
