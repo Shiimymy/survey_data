@@ -69,9 +69,19 @@ def get_new_nps():
 
 
 def get_new_resolution():
-    print("How the customers reponded to : Did you issue was resolved?")
-    new_resolve = input("Enter 'yes', 'no' or 'i don't know':\n")
-    validate_resolution(new_resolve)
+    """
+    Get new resolution answer from user to complete new survey data
+    """
+    new_resolve = None
+
+    while True:
+        print("How the customers reponded to : Did you issue was resolved?")
+        new_resolve = input("Enter 'yes', 'no' or 'i don't know':\n")
+        if validate_resolution(new_resolve):
+            break
+        else:
+            print("The input can only be 'yes', 'no' or 'I don't know'\n")
+
     return new_resolve
 
 
@@ -100,14 +110,13 @@ def validate_resolution(new_resolve):
     Validate new resolution answer given by user
     """
     if new_resolve == "yes":
-        return new_resolve
+        return True
     elif new_resolve == "no":
-        return new_resolve
+        return True
     elif new_resolve == "i don't know":
-        return new_resolve
+        return True
     else:
-        print("The input can only be 'yes', 'no' or 'I don't know'\n")
-        get_new_survey_data()
+        return False
 
 # new function after user input
 
