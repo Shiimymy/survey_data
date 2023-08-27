@@ -37,7 +37,9 @@ def get_new_survey_data():
 
 
 def get_new_name():
-
+    """
+    Get new employee name from user to complete new survey data
+    """
     new_name = None
 
     while True:
