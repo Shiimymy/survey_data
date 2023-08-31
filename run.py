@@ -17,19 +17,19 @@ SHEET = GSPREAD_CLIENT.open('survey_data')
 def choose_action():
     """
     Prompt user to either enter a new survey
-    or get the score for a date
+    or get the result for a date in the score sheet
     """
     print("Welcome to the survey's datas of your Team")
 
     user_choice = None
 
     while True:
-        print("You can add a new survey, get the score for a date")
-        user_choice = input("Enter 'survey', 'score': ")
+        print("You can add a new survey or get the score for a date")
+        user_choice = input("Enter 'survey' or 'result': ")
         if validate_action(user_choice):
             break
         else:
-            print("Invalid : enter only 'survey' or 'score'")
+            print("Invalid : enter only 'survey' or 'result' ")
             continue
     
     return user_choice
@@ -41,8 +41,9 @@ def validate_action(user_choice):
     """
     if user_choice == "survey":
         return True
-    elif user_choice == "score":
-        True
+    elif user_choice == "result":
+        # Bug : doesn't recognize.
+        return True
     else:
         return False
     
