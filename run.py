@@ -260,20 +260,32 @@ def update_score_worksheet(date, nps, resolution, action):
     print("The score worksheet is updated: please check your Team score.")
 
 
+def get_user_action(user_action):
+    """
+    Get the user input to redirect the programm
+    to the asked action
+    """
+    if user_action == "survey":
+        new_data = get_new_survey_data()
+        update_survey_worksheet(new_data)
+    else:
+        employee_list = get_employees()
+        average_nps = get_average_nps(employee_list)
+        reso_percentage = calculate_resolution_percentage(employee_list)
+        meeting = identify_leader_meeting(average_nps, reso_percentage)
+        training = identify_leader_training(average_nps, reso_percentage)
+        action = get_leader_action(meeting, training)
+        date = get_date()
+        update_score_worksheet(date, average_nps, str(reso_percentage), action)
+
+
 def main():
     """
-    Run all program functions.
+    Run the functions which start
+    the programm.
     """
     user_action = choose_action()
-    update_survey_worksheet(new_data)
-    employee_list = get_employees()
-    average_nps = get_average_nps(employee_list)
-    reso_percentage = calculate_resolution_percentage(employee_list)
-    meeting = identify_leader_meeting(average_nps, reso_percentage)
-    training = identify_leader_training(average_nps, reso_percentage)
-    action = get_leader_action(meeting, training)
-    date = get_date()
-    update_score_worksheet(date, average_nps, str(reso_percentage), action)
+    get_user_action(str(user_action))
 
 
 main()
