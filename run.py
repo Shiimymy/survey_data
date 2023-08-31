@@ -31,6 +31,8 @@ def choose_action():
         else:
             print("Invalid : enter only 'survey' or 'score'")
             continue
+    
+    return user_choice
 
 
 def validate_action(user_choice):
