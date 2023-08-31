@@ -42,7 +42,6 @@ def validate_action(user_choice):
     if user_choice == "survey":
         return True
     elif user_choice == "result":
-        # Bug : doesn't recognize.
         return True
     else:
         return False
@@ -162,8 +161,7 @@ def update_survey_worksheet(data):
     survey_worksheet = SHEET.worksheet("survey")
     survey_worksheet.append_row(data)
     print("New survey added successfully. \n")
-    choose_action()
-
+    
 
 def get_employees():
     """
@@ -269,6 +267,7 @@ def get_user_action(user_action):
     if user_action == "survey":
         new_data = get_new_survey_data()
         update_survey_worksheet(new_data)
+        main()
     else:
         employee_list = get_employees()
         average_nps = get_average_nps(employee_list)
