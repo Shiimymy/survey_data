@@ -264,7 +264,7 @@ def main():
     """
     Run all program functions.
     """
-    choose_action()
+    user_action = choose_action()
     update_survey_worksheet(new_data)
     employee_list = get_employees()
     average_nps = get_average_nps(employee_list)
