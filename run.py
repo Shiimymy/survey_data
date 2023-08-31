@@ -38,12 +38,12 @@ def validate_action(user_choice):
     Validate user action choice
     """
     if user_choice == "survey":
-        return get_new_survey_data()
+        return True
     elif user_choice == "score":
-        print("score function to build")
+        True
     else:
         return False
-
+    
 
 def get_new_survey_data():
     """
@@ -263,7 +263,6 @@ def main():
     Run all program functions.
     """
     choose_action()
-    new_data = get_new_survey_data()
     update_survey_worksheet(new_data)
     employee_list = get_employees()
     average_nps = get_average_nps(employee_list)
