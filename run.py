@@ -19,19 +19,20 @@ def choose_action():
     Prompt user to either enter a new survey
     or get the result for a date in the score sheet
     """
-    print("Welcome to the survey's datas of your Team")
+    print("You can choose between 2 actions to manage the surveys' datas.")
 
     user_choice = None
 
     while True:
-        print("You can add a new survey or get the score for a date")
-        user_choice = input("Enter 'survey' or 'result': ")
+        print("You can add a new survey or generate a new result for")
+        print("the end of day. \n")
+        user_choice = input("Enter 'survey' or 'result' to choose: ")
         if validate_action(user_choice):
             break
         else:
             print("Invalid : enter only 'survey' or 'result' ")
             continue
-    
+
     return user_choice
 
 
@@ -45,7 +46,27 @@ def validate_action(user_choice):
         return True
     else:
         return False
-    
+
+
+def get_user_action(user_action):
+    """
+    Get the user input to redirect the programm
+    to the asked action
+    """
+    if user_action == "survey":
+        new_data = get_new_survey_data()
+        update_survey_worksheet(new_data)
+        main()
+    else:
+        employee_list = get_employees()
+        average_nps = get_average_nps(employee_list)
+        reso_percentage = calculate_resolution_percentage(employee_list)
+        meeting = identify_leader_meeting(average_nps, reso_percentage)
+        training = identify_leader_training(average_nps, reso_percentage)
+        action = get_leader_action(meeting, training)
+        date = get_date()
+        update_score_worksheet(date, average_nps, str(reso_percentage), action)
+
 
 def get_new_survey_data():
     """
@@ -161,11 +182,12 @@ def update_survey_worksheet(data):
     survey_worksheet = SHEET.worksheet("survey")
     survey_worksheet.append_row(data)
     print("New survey added successfully. \n")
-    
+
 
 def get_employees():
     """
-    Collect employees data to calculate their stats
+    Collect employees data in the
+    survey sheet to calculate their stats.
     """
     survey_worksheet = SHEET.worksheet('survey')
     surveys = survey_worksheet.get_all_values()
@@ -202,7 +224,7 @@ def identify_leader_meeting(nps, resolution):
     Identify if the Team Leader would need to organise a meeting
     to improve Team performances.
     """
-    meeting_action = 5 <= nps <= 7 or 55 <= resolution <= 75
+    meeting_action = 5 < nps <= 7 or 55 < resolution <= 75
 
     if meeting_action:
         meeting = "Meeting"
@@ -217,7 +239,7 @@ def identify_leader_training(nps, resolution):
     Identify if the Team Leader would need to organise a training
     to improve Team performances.
     """
-    training_action = nps < 5 and resolution < 55
+    training_action = nps <= 5 and resolution <= 55
 
     if training_action:
         training = "Training"
@@ -235,7 +257,7 @@ def get_leader_action(meeting, training):
     if not (meeting or training):
         no_action = "None"
         return no_action
-    else: 
+    else:
         return f"{meeting}{training}"
 
 
@@ -249,34 +271,14 @@ def get_date():
 
 def update_score_worksheet(date, nps, resolution, action):
     """
-    Update the score worksheet with actions to plan for the user
-    wich are linked with the average NPS score of the Team
+    Update the score worksheet with actions to do for the user
+    based on the average NPS score of the Team
     and the issue resolution percentage.
     """
     new_score = [str(date), str(nps), f"{resolution}%", str(action)]
     score_worksheet = SHEET.worksheet("score")
     score_worksheet.append_row(new_score)
     print("The score worksheet is updated: please check your Team score.")
-
-
-def get_user_action(user_action):
-    """
-    Get the user input to redirect the programm
-    to the asked action
-    """
-    if user_action == "survey":
-        new_data = get_new_survey_data()
-        update_survey_worksheet(new_data)
-        main()
-    else:
-        employee_list = get_employees()
-        average_nps = get_average_nps(employee_list)
-        reso_percentage = calculate_resolution_percentage(employee_list)
-        meeting = identify_leader_meeting(average_nps, reso_percentage)
-        training = identify_leader_training(average_nps, reso_percentage)
-        action = get_leader_action(meeting, training)
-        date = get_date()
-        update_score_worksheet(date, average_nps, str(reso_percentage), action)
 
 
 def main():
