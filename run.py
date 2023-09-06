@@ -27,7 +27,7 @@ def choose_action():
         print("You can add a new survey or generate a new result for")
         print("the end of day. \n")
         user_choice = input("Enter 'survey' or 'result' to choose: ")
-        if validate_action(user_choice):
+        if validate_action(user_choice.lower()):
             break
         else:
             print("Invalid : enter only 'survey' or 'result' ")
@@ -133,7 +133,7 @@ def get_new_resolution():
     while True:
         print("How the customers reponded to : Did you issue was resolved?")
         new_resolve = input("Enter 'yes', 'no' or 'i don't know': \n")
-        if validate_resolution(new_resolve):
+        if validate_resolution(new_resolve.lower()):
             break
         else:
             print("The input can only be 'yes', 'no' or 'I don't know'\n")
@@ -182,7 +182,7 @@ def validate_resolution(new_resolve):
 
 def update_survey_worksheet(data):
     """
-    Update survey worksheet, add new row with the list data provided by user"
+    Update survey worksheet, add new row with the list data provided by user
     """
     survey_worksheet = SHEET.worksheet("survey")
     survey_worksheet.append_row(data)
@@ -283,6 +283,7 @@ def update_score_worksheet(date, nps, resolution, action):
     new_score = [str(date), str(nps), f"{resolution}%", str(action)]
     score_worksheet = SHEET.worksheet("score")
     score_worksheet.append_row(new_score)
+    print(f"Team leader action needed : {action}")
     print("The score worksheet is updated: please check your Team score. \n")
     print("You are done for today!")
     print("Please remember to add the new survey tommorow too.")
