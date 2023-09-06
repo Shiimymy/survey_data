@@ -116,7 +116,7 @@ def get_new_nps():
 
     while True:
         new_nps = input('Enter a number between 0 and 10 for the NPS: \n')
-        if validate_nps(int(new_nps)):
+        if validate_nps(new_nps):
             break
         else:
             print("The NPS should be a number between 0 and 10\n")
@@ -155,10 +155,15 @@ def validate_nps(new_nps):
     """
     Validate new nps given by user
     """
-    if 0 <= new_nps <= 10:
-        return True
-    else:
+    try:
+        0 <= int(new_nps) <= 10
+        if not 0 <= int(new_nps) <= 10:
+            return False
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
         return False
+
+    return True
 
 
 def validate_resolution(new_resolve):
