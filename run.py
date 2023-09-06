@@ -283,7 +283,9 @@ def update_score_worksheet(date, nps, resolution, action):
     new_score = [str(date), str(nps), f"{resolution}%", str(action)]
     score_worksheet = SHEET.worksheet("score")
     score_worksheet.append_row(new_score)
-    print("The score worksheet is updated: please check your Team score.")
+    print("The score worksheet is updated: please check your Team score. \n")
+    print("You are done for today!")
+    print("Please remember to add the new survey tommorow too.")
 
 
 def main():
