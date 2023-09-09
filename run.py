@@ -26,7 +26,7 @@ def choose_action():
     while True:
         print("You can add a new survey or generate a new result for")
         print("the end of day. \n")
-        user_choice = input("Enter 'survey' or 'result' to choose: ")
+        user_choice = input("Enter 'survey' or 'result' to choose: \n")
         if validate_action(user_choice.lower()):
             break
         else:

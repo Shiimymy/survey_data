@@ -113,7 +113,26 @@ Python Testing: no error found with [pep8ci](https://pep8ci.herokuapp.com/)
 * **Fork template**: The first step before coding was to fork the p3-template from Code Institute as asked. To do so, once on the p3-template in Github (as per the first link), I clicked on Fork on the top-right of the page. Then I renamed the repository with the name of my project under Repository name and clicked to Create Fork. This allowed me to update the template.
 
 
-* **Project deployment**:
+* **Project deployment**: This project is deployed on [Heroku](https://www.heroku.com) and the following steps have been followed: 
+1. Be sure that "\n" was at the end of each input statement.
+2. Added dependencies in the requirement.txt file.
+3. Once log in to the [Heroku Dashboard](https://dashboard.heroku.com/apps), click on the button **Create New App**
+4. File the form by choosing a name for the App, the region and click on the button **Create app**.
+5. Click on the **Settings** tab.
+6. In Config Var section, click on **Reveal Config Var**.
+7. Add a first key called *CREDS* and the value should be the data found in the creds.json file of the project, then click **Add**.
+8. Add a second key called *PORT* and the value should be *8000* for the p3-template being compatible with Heroku, then click **Add**.
+9. In the Buildpacks section, click on the button **Add buildpacks**.
+10. Click on the button **Python** and then click **Save changes**.
+11. In the Buildpacks section again, click on the button **Add buildpacks** another time.
+12. Click on the button **nodejs** and then click **Save changes**.
+13. At the top of the page, click on the **Deploy** tab.
+14. In the Connect to Github section, click on **Connect to Github**.
+15. In the Connect to Github section, search for the repository name, click **Search** and the **Connect** once found.
+16. Choose between Automatic deploys or Manual deploys :
+* For Heroku to rebuild the app every time a new change is pushed, click on **Enable Automatic Deploys**.
+* To manually deploy , click on **Deploy Branch**.
+17. Once the App deployed, click on **View** to access deployed link.
 
 * **Clone project**: This project will be also cloned to work locally on the future realesed by following these setps:
 
