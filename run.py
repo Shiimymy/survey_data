@@ -206,7 +206,7 @@ def get_average_nps(employee_list):
     total = 0
     for survey in employee_list[1:]:
         total += int(survey[1])
-    
+
     total /= len(employee_list[1:])
     return round(total)
 
@@ -219,7 +219,7 @@ def calculate_resolution_percentage(employee_list):
 
     for x in employee_list[1:]:
         count_yes += x[2].count('yes')
-    
+
     percentage_yes = ((count_yes*100)/len(employee_list[1:]))
     return round(percentage_yes)
 

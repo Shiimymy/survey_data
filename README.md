@@ -95,8 +95,10 @@ A new feature will be added for the moderator and Team Leader to get the result 
 
 ### Validator Testing
 
-### Fixed issues
+Python Testing: no error found with [pep8ci](https://pep8ci.herokuapp.com/)
 
+### Fixed issues
+ 
 
 ## Deployment
 
