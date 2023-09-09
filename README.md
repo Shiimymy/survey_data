@@ -110,13 +110,17 @@ Python Testing: no error found with [pep8ci](https://pep8ci.herokuapp.com/)
 
 ## Deployment
 
-* **Clone project**:
+* **Fork template**: The first step before coding was to fork the p3-template from Code Institute as asked. To do so, once on the p3-template in Github (as per the first link), I clicked on Fork on the top-right of the page. Then I renamed the repository with the name of my project under Repository name and clicked to Create Fork. This allowed me to update the template.
 
-This project will be also cloned to work locally on the future realesed by following these setps:
 
-Go in General Knowledge Quizz repository,
-Click on Code to find the URL and copy it.
-In the Terminal write git clone and paste the url.
-Press Enter to create the clone.
+* **Project deployment**:
+
+* **Clone project**: This project will be also cloned to work locally on the future realesed by following these setps:
+
+1. Go in survey_data repository,
+2. Click on Code to find the URL and copy it.
+3. In the Terminal write git clone and paste the url.
+4. Press Enter to create the clone.
+
 
 ## Credits
