@@ -99,6 +99,14 @@ Python Testing: no error found with [pep8ci](https://pep8ci.herokuapp.com/)
 
 ### Fixed issues
  
+| Issues | Description | Steps done to fix |
+|----|-----|-----|
+|Wrong Name|After validation of the name input, previous wrong name input being append to survey sheet| Creation of a While True loop|
+|Wrong NPS|After validation of the NPS input, previous wrong NPS input being append to survey sheet| Creation of a While True loop|
+|Wrong resolution|After validation of the resolution input, previous wrong resolution being append to survey sheet| Creation of a While True loop|
+|Non functioning Result input|The result input was recognize as False while validating|Add the missing key word "return"|
+|Initial input not restarting|After the information of the survey entered, the program stopped|Change the function and position of redirection of the initial input|
+|NPS ValueError|If letters where entered in the NPS input, a ValueError exception raised and stopped the program|Create try loop in validate_nps func to handle ValueError exception|
 
 ## Deployment
 
