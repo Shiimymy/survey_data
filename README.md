@@ -66,7 +66,7 @@ Once the user finished to enter all the survey of the day and select the "result
 
 ### Future features
 
-
+A new feature will be added for the moderator and Team Leader to get the result of a specific date. It will be done by using [datetime](https://docs.python.org/3/library/datetime.html).
 
 ## Testing
 
