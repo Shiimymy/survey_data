@@ -101,12 +101,12 @@ Python Testing: no error found with [pep8ci](https://pep8ci.herokuapp.com/)
  
 | Issues | Description | Steps done to fix |
 |----|-----|-----|
-|Wrong Name|After validation of the name input, previous wrong name input being append to survey sheet| Creation of a While True loop|
-|Wrong NPS|After validation of the NPS input, previous wrong NPS input being append to survey sheet| Creation of a While True loop|
-|Wrong resolution|After validation of the resolution input, previous wrong resolution being append to survey sheet| Creation of a While True loop|
-|Non functioning Result input|The result input was recognize as False while validating|Add the missing key word "return"|
+|Wrong Name|After validation of the name input, previous wrong name input being append to survey sheet| Creation of a `while True:` loop|
+|Wrong NPS|After validation of the NPS input, previous wrong NPS input being append to survey sheet| Creation of a `while True:` loop|
+|Wrong resolution|After validation of the resolution input, previous wrong resolution being append to survey sheet| Creation of a `while True:` loop|
+|Non functioning Result input|The result input was recognize as False while validating|Add the missing key word `return`|
 |Initial input not restarting|After the information of the survey entered, the program stopped|Change the function and position of redirection of the initial input|
-|NPS ValueError|If letters where entered in the NPS input, a ValueError exception raised and stopped the program|Create try loop in validate_nps func to handle ValueError exception|
+|NPS ValueError|If letters where entered in the NPS input, a `ValueError` exception raised and stopped the program|Create `try` loop in `validate_nps` func to handle `ValueError` exception|
 
 ## Deployment
 
@@ -114,7 +114,7 @@ Python Testing: no error found with [pep8ci](https://pep8ci.herokuapp.com/)
 
 
 * **Project deployment**: This project is deployed on [Heroku](https://www.heroku.com) and the following steps have been followed: 
-1. Be sure that "\n" was at the end of each input statement.
+1. Be sure that `\n` was at the end of each input statement.
 2. Added dependencies in the requirement.txt file.
 3. Once log in to the [Heroku Dashboard](https://dashboard.heroku.com/apps), click on the button **Create New App**
 4. File the form by choosing a name for the App, the region and click on the button **Create app**.
@@ -130,11 +130,12 @@ Python Testing: no error found with [pep8ci](https://pep8ci.herokuapp.com/)
 14. In the Connect to Github section, click on **Connect to Github**.
 15. In the Connect to Github section, search for the repository name, click **Search** and the **Connect** once found.
 16. Choose between Automatic deploys or Manual deploys :
-* For Heroku to rebuild the app every time a new change is pushed, click on **Enable Automatic Deploys**.
-* To manually deploy , click on **Deploy Branch**.
+- For Heroku to rebuild the app every time a new change is pushed, click on **Enable Automatic Deploys**.
+- To manually deploy , click on **Deploy Branch**.
 17. Once the App deployed, click on **View** to access deployed link.
 
-* **Clone project**: This project will be also cloned to work locally on the future realesed by following these setps:
+
+* **Clone project**: This project will be also cloned to work locally on the future realesed by following these steps:
 
 1. Go in survey_data repository,
 2. Click on Code to find the URL and copy it.
@@ -143,3 +144,7 @@ Python Testing: no error found with [pep8ci](https://pep8ci.herokuapp.com/)
 
 
 ## Credits
+
+* Instructions to use `gspread` were found on the [Love Sandwiches Project](https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/tree/master/05-deployment/01-deployment-part-1).
+* Instructions to use `datetime` were found on [python.org](https://docs.python.org/3/library/datetime.html).
+* Instructions to use `.count()` method were found on [datagy.io](https://datagy.io/python-count-occurrences-in-list/).
