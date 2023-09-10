@@ -229,7 +229,7 @@ def identify_leader_meeting(nps, resolution):
     Identify if the Team Leader would need to organise a meeting
     to improve Team performances.
     """
-    meeting_action = 5 < nps <= 7 or 55 < resolution <= 75
+    meeting_action = 7 < nps <= 8 or 55 < resolution <= 75
 
     if meeting_action:
         meeting = "Meeting"
@@ -244,7 +244,7 @@ def identify_leader_training(nps, resolution):
     Identify if the Team Leader would need to organise a training
     to improve Team performances.
     """
-    training_action = nps <= 5 and resolution <= 55
+    training_action = nps <= 6 and resolution <= 55
 
     if training_action:
         training = "Training"

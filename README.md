@@ -82,9 +82,9 @@ A new feature will be added for the moderator and Team Leader to get the result 
 |Name input|In 'survey' option, the input is running and append to sheet after validation | YES |
 |NPS input| In 'survey' option, the input is running and append to sheet after validation | YES |
 |Resolution input| In 'survey' option, the input is running and append to sheet after validation | YES |
-|Name Validator|The validator is looping until user enter a valid name as it only accepts alphabet letters| YES |
-|NPS Validator|The validator is looping until user enter a valid number between 0 and 10| YES |
-|Resolution Validator|The validator is looping until user enter a valid resolution answer : 'yes', 'no' and 'i don't know'| YES |
+|Name Validator|The validator is looping until user enter a valid name as it only accepts alphabet letters ![Name Validation](images/name_validation.jpg)| YES |
+|NPS Validator|The validator is looping until user enter a valid number between 0 and 10 ![NPS Validation](images/nps_validation.jpg)| YES |
+|Resolution Validator|The validator is looping until user enter a valid resolution answer : 'yes', 'no' and 'i don't know' ![Resolution Validation](images/resolution_validation.jpg) | YES |
 |Initial input restart|The initial input display again once the three datas survey are completed| YES |
 |Result input| The input get and calculates the data then append them to score sheet after validation | YES |
 |Date info| The program successfully get the date from [datetime](https://docs.python.org/3/library/datetime.html) | YES |
